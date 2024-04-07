@@ -1,5 +1,4 @@
 <script setup lang="js">
-const { login } = useAuth();
 const progressBar= ref(false)
 const  errorMessage= ref("")
 const alert= ref(false)
@@ -19,11 +18,25 @@ const emailRules = [
        v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
       ]
 
-async function onLoginClick() {
+  const { signIn, data } = useAuth()
+  console.log(data);
 
-    await login(email.value, password.value, rememberMe.value);
-
-}
+  async function signInWithCredentials() {
+    // Probably you'll do some validation here before submitting to the backend
+    // ...
+    // This is the object that our backend expects for the `signIn` endpoint
+    const credentials = {
+      email: email.value,
+      password: password.value
+    }
+    try {
+      // This sends a POST request to the `auth.provider.endpoints.signIn` endpoint with `credentials` as the body
+      await signIn(credentials)
+      alert('Successfully logged in!')
+    } catch (error) {
+      console.error(error)
+    }
+  }
 </script>
 
 <template>
@@ -75,7 +88,7 @@ async function onLoginClick() {
                     <v-btn
                       type="submit"
                       :disabled="!valid"
-                      @click.prevent="onLoginClick"
+                      @click.prevent="signInWithCredentials"
                       class="mt-4"
                       color="primary"
                       value="log in"
