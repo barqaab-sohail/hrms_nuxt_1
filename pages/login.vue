@@ -18,8 +18,6 @@ const emailRules = [
        v => !v || /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v) || 'E-mail must be valid'
       ]
 
-  const { signIn, data } = useAuth()
-  console.log(data);
 
   async function signInWithCredentials() {
     // Probably you'll do some validation here before submitting to the backend

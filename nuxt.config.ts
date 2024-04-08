@@ -9,7 +9,16 @@ export default defineNuxtConfig({
     },
   },
   modules: [
-    'vuetify-nuxt-module'
+    'vuetify-nuxt-module',
+    '@nuxtjs/tailwindcss'
   ],
+  vuetify: {
+    moduleOptions: {
+      /* module specific options */
+    },
+    vuetifyOptions: {
+      /* vuetify options */
+    }
+  }
  
 })
