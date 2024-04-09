@@ -1,16 +1,23 @@
 <script setup lang="js">
+definePageMeta({
+  layout: 'disable'
+})
+
 import axios from '../axios'
-const email = ref("")
+import { getData, setData,clear } from 'nuxt-storage/local-storage'
+const email = ref(getData('email'))
 const password = ref("")
 const progressBar= ref(false)
 const visible = ref(false)
 const alert= ref(false)
 const rememberMe = ref(false)
+
 onMounted(()=>{
-  rememberMe.value = localStorage.getItem('password')===null?false:true
-  email.value = localStorage.getItem('email')
-  password.value = localStorage.getItem('password')
+  rememberMe.value = getData('rememberMe')===null?false:true
+  email.value = getData('email')
+  password.value = getData('password')
 });
+
 const valid = ref(false)
 const  errorMessage= ref("")
 const passwordRules =[
@@ -24,6 +31,7 @@ const emailRules = [
       ]
 
 async function signInWithCredentials()  {
+
   progressBar.value=true;
   const credentials = {
     email: email.value,
@@ -31,18 +39,22 @@ async function signInWithCredentials()  {
   }
   try {
     const response = await axios.post('login', credentials);
-    localStorage.setItem('userName',response.userName);
-    localStorage.setItem('token',response.token);
-    localStorage.setItem('pictureUrl',response.pictureUrl);
+
     if(rememberMe.value){
-      localStorage.setItem('email',email.value);
-      localStorage.setItem('password',password.value);
+      setData('email',email.value)
+      setData('password',password.value)
+      setData('rememberMe',true)
     }else{
-    localStorage.removeItem('email');
-    localStorage.removeItem('password');
+      setData('email',"")
+      setData('password',"")
+      setData('rememberMe',false)
     }
-    console.log(response);
+    setData('name',response.data.userName)
+    setData('token',response.data.token)
+    setData('designation',response.data.userDesignation)
+    setData('picture',response.data.pictureUrl)
     progressBar.value=false;
+    await navigateTo('/dashboard')
 
   } catch (error) {
     console.error(error.response.data);
