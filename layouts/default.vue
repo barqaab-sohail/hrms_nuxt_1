@@ -39,6 +39,7 @@
 </template>
 
 <script setup lang="js">
+
 useHead({
   script: [
     {
@@ -49,6 +50,19 @@ useHead({
   ]
 })
 onMounted(() => {
+  const token = useState('token').value;
+
+  if(localStorage.getItem('token')){
+    useState('token').value = localStorage.getItem('token')
+  }
+  watch(
+    token,(tokenVal)=>{
+      localStorage.setItem("token",JSON.stringify(tokenVal))
+    },{
+      deep:true
+    }
+  );
+
   const fullscreenButton =
                 document.getElementById("fullscreen-button");
 

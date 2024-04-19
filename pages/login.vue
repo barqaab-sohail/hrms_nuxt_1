@@ -27,13 +27,13 @@ const emailRules = [
       email: email.value,
       password: password.value
     }
-    try {
-      // This sends a POST request to the `auth.provider.endpoints.signIn` endpoint with `credentials` as the body
-      await signIn(credentials)
-      alert('Successfully logged in!')
-    } catch (error) {
-      console.error(error)
-    }
+
+    const {data} = await useFetch("api/login",{
+      method:'post',
+      body:credentials
+    });
+    console.log(data.value.userName);
+
   }
 </script>
 

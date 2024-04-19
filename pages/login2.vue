@@ -2,10 +2,18 @@
 definePageMeta({
   layout: 'disable'
 })
-
+useHead({
+  script: [
+    {
+      src: 'https://unpkg.com/@popperjs/core@2',
+      // valid options are: 'head' | 'bodyClose' | 'bodyOpen'
+      tagPosition: 'bodyClose'
+    }
+  ]
+})
 import axios from '../axios'
-import { getData, setData,clear } from 'nuxt-storage/local-storage'
-const email = ref(getData('email'))
+
+const email = ref("")
 const password = ref("")
 const progressBar= ref(false)
 const visible = ref(false)
@@ -13,11 +21,11 @@ const alert= ref(false)
 const rememberMe = ref(false)
 
 onMounted(()=>{
-  rememberMe.value = getData('rememberMe')===null?false:true
-  email.value = getData('email')
-  password.value = getData('password')
+  rememberMe.value = localStorage.getItem('rememberMe')===null?false:true
+  email.value = localStorage.getItem('email')
+  password.value = localStorage.getItem('password')
 });
-
+const token = useState("token", () => "");
 const valid = ref(false)
 const  errorMessage= ref("")
 const passwordRules =[
@@ -37,32 +45,62 @@ async function signInWithCredentials()  {
     email: email.value,
     password: password.value
   }
-  try {
-    const response = await axios.post('login', credentials);
 
-    if(rememberMe.value){
-      setData('email',email.value)
-      setData('password',password.value)
-      setData('rememberMe',true)
+ const {data,error,pending} = await useFetch("api/login",{
+      method:'post',
+      body:credentials
+    });
+    pending.value?progressBar.value=true:progressBar.value=false
+    if(error.value===null){
+      if(rememberMe.value){
+        localStorage.setItem('email',email.value)
+        localStorage.setItem('password',password.value)
+        localStorage.setItem('rememberMe',true)
+      }else{
+        localStorage.setItem('email',"")
+        localStorage.setItem('password',"")
+        localStorage.setItem('rememberMe',false)
+      }
+      localStorage.setItem('name',data.value.userName)
+      localStorage.setItem('token',data.value.token)
+      token.value = data.value.token
+      localStorage.setItem('designation',data.value.userDesignation)
+      localStorage.setItem('picture',data.value.pictureUrl)
+
+      await navigateTo('/dashboard')
+
     }else{
-      setData('email',"")
-      setData('password',"")
-      setData('rememberMe',false)
+      alert.value=true;
+      errorMessage.value=error.value.message
     }
-    setData('name',response.data.userName)
-    setData('token',response.data.token)
-    setData('designation',response.data.userDesignation)
-    setData('picture',response.data.pictureUrl)
-    progressBar.value=false;
-    await navigateTo('/dashboard')
 
-  } catch (error) {
-    console.error(error.response.data);
-    progressBar.value=false;
-    alert.value=true;
-    errorMessage.value=error.response.data.message
 
-  }
+  // try {
+  //   const response = await axios.post('mis/login', credentials);
+
+  //   if(rememberMe.value){
+  //     localStorage.setItem('email',email.value)
+  //     localStorage.setItem('password',password.value)
+  //     localStorage.setItem('rememberMe',true)
+  //   }else{
+  //     localStorage.setItem('email',"")
+  //     localStorage.setItem('password',"")
+  //     localStorage.setItem('rememberMe',false)
+  //   }
+  //   localStorage.setItem('name',response.data.userName)
+  //   localStorage.setItem('token',response.data.token)
+  //   localStorage.setItem('designation',response.data.userDesignation)
+  //   localStorage.setItem('picture',response.data.pictureUrl)
+  //   progressBar.value=false;
+  //   await navigateTo('/dashboard')
+
+  // } catch (error) {
+  //   console.error(error.response.data);
+  //   progressBar.value=false;
+  //   alert.value=true;
+  //   errorMessage.value=error.response.data.message
+
+  // }
 }
 </script>
 

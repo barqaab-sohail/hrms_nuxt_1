@@ -1,13 +1,29 @@
 <script setup>
-import { getData, setData, removeItem } from "nuxt-storage/local-storage";
+import { createWebHistory } from "~/node_modules/vue-router/dist/vue-router";
+
 const props = defineProps(["name", "designation"]);
-const name = getData("name");
-const designation = getData("designation");
-const picture = getData("picture");
+const name = ref("");
+const designation = ref("");
+const picture = ref("");
+onMounted(() => {
+  name.value = localStorage.getItem("name");
+  designation.value = localStorage.getItem("designation");
+  picture.value = localStorage.getItem("picture");
+});
 async function logout() {
-  setData("name", "");
-  setData("designation", "");
-  removeItem("token");
+  const credentials = {
+    email: localStorage.getItem("email"),
+    token: useState("token").value,
+  };
+
+  const { data } = await useFetch("api/logout", {
+    method: "post",
+    body: credentials,
+  });
+  console.log(data);
+  localStorage.setItem("name", "");
+  localStorage.setItem("designation", "");
+  localStorage.removeItem("token");
   await navigateTo("/login2");
 }
 </script>
