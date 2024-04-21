@@ -36,6 +36,9 @@ export default defineNuxtConfig({
   //   // Login Page SSR false
   //   '/login2': { ssr: false },
   // },
+  experimental: {
+    payloadExtraction: true
+  },
   modules: [
     'vuetify-nuxt-module',
     '@nuxtjs/tailwindcss',
