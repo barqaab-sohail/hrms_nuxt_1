@@ -17,24 +17,22 @@
       :item-class="itemRowBackground"
       @click:row="handleClick"
     >
-    
-    <template v-slot:item.status="{ value }">
-      <v-chip :color="getStatus(value)">
-        {{ value }}
-      </v-chip>
-    </template>
-  
+      <template v-slot:item.status="{ value }">
+        <v-chip :color="getStatus(value)">
+          {{ value }}
+        </v-chip>
+      </template>
     </v-data-table>
   </div>
 </template>
 <script setup>
-const getStatus =  (calories)=> {
-        if (calories == 'Active') return 'green'
-        else return 'red'
-      }
-const itemRowBackground = (item)=> {
-     return item.status === 'Active' ? 'style-1' : 'style-2'
-  }
+const getStatus = (calories) => {
+  if (calories == "Active") return "green";
+  else return "red";
+};
+const itemRowBackground = (item) => {
+  return item.status === "Active" ? "style-1" : "style-2";
+};
 
 const nuxtApp = useNuxtApp();
 const search = ref("");
@@ -51,7 +49,7 @@ const { data } = await useAsyncData(
     $fetch(`http://localhost/hrms/api/employees`, {
       headers: {
         accept: "application/json",
-        Authorization: `Bearer 592|So6wOO3VMcKkLvOb8xlrOUWzsvFyTJTJVSCalhtMc0bf50cb`,
+        Authorization: `Bearer 34|Sakf37EffWj6EAghl4NmVzG9akPqgcrncudUkK8Qff2d0399`,
       },
     }),
   {
@@ -83,8 +81,9 @@ const refreshPage = () => {
 </script>
 <style>
 .style-1 {
-  background-color: rgb(215,215,44)
+  background-color: rgb(215, 215, 44);
 }
 .style-2 {
-  background-color: rgb(114,114,67)
-}</style>
+  background-color: rgb(114, 114, 67);
+}
+</style>

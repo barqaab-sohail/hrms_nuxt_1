@@ -1,25 +1,37 @@
 <script setup>
 const route = useRoute();
 const employee = ref();
+const status = ref(false);
+const statusColor = ref("");
 
 const { data, pending } = useAsyncData("employee", () =>
   $fetch(`http://localhost/hrms/api/employee/${route.params.id}`, {
     headers: {
       accept: "application/json",
-      Authorization: `Bearer 592|So6wOO3VMcKkLvOb8xlrOUWzsvFyTJTJVSCalhtMc0bf50cb`,
+      Authorization: `Bearer 34|Sakf37EffWj6EAghl4NmVzG9akPqgcrncudUkK8Qff2d0399`,
     },
   })
 );
 
 employee.value = data;
-const statusColor =
-  employee.value.status == "Active"
-    ? "bg-green-500 py-1 px-2 rounded text-white text-sm"
-    : "bg-red-500 py-1 px-2 rounded text-white text-sm";
+status.value = pending;
+
+console.log("pending...." + status.value);
+onMounted(() => {
+  statusColor.value =
+    data?.value.hr_status_id == "Active"
+      ? "bg-green-500 py-1 px-2 rounded text-white text-sm"
+      : "bg-red-500 py-1 px-2 rounded text-white text-sm";
+});
+
+// const statusColor =
+//   employee.value.hr_status_id == "Active"
+//     ? "bg-green-500 py-1 px-2 rounded text-white text-sm"
+//     : "bg-red-500 py-1 px-2 rounded text-white text-sm";
 </script>
 <template>
-  <div v-if="!pending"></div>
-  <div>
+  <div v-if="status.value">Loading.....</div>
+  <div v-else>
     <div class="container my-5 p-5">
       <div class="md:flex no-wrap md:-mx-2">
         <!-- Left Side -->

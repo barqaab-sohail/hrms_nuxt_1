@@ -4,7 +4,7 @@ export default defineEventHandler(async (event) => {
   return await $fetch(url, {
     options: {
       headers: {
-        Authorization: `Bearer 32|SkrSxxDzYHpaI2QvubrSwz0ufXwiuiNcGEWWCyvF0af1e52f`,
+        Authorization: `Bearer 34|Sakf37EffWj6EAghl4NmVzG9akPqgcrncudUkK8Qff2d0399`,
       },
     },
   });
