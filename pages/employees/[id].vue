@@ -6,10 +6,11 @@ const { data, pending } = useAsyncData("employee", () =>
   $fetch(`http://localhost/hrms/api/employee/${route.params.id}`, {
     headers: {
       accept: "application/json",
-      Authorization: `Bearer 32|SkrSxxDzYHpaI2QvubrSwz0ufXwiuiNcGEWWCyvF0af1e52f`,
+      Authorization: `Bearer 592|So6wOO3VMcKkLvOb8xlrOUWzsvFyTJTJVSCalhtMc0bf50cb`,
     },
   })
 );
+
 employee.value = data;
 const statusColor =
   employee.value.status == "Active"
