@@ -49,7 +49,7 @@ const { data } = await useAsyncData(
     $fetch(`http://localhost/hrms/api/employees`, {
       headers: {
         accept: "application/json",
-        Authorization: `Bearer 34|Sakf37EffWj6EAghl4NmVzG9akPqgcrncudUkK8Qff2d0399`,
+        Authorization: `Bearer 36|vBSLIHAH9wU6ChrKJjjA1mo7KCuk93lesE0ckxO96c37a705`,
       },
     }),
   {
