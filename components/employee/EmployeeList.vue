@@ -1,13 +1,19 @@
 <template>
   <div>
-    <v-text-field
-      v-model="search"
-      append-icon="search"
-      label="Search"
-      single-line
-      hide-details
-    ></v-text-field>
-    <v-progress-circular color="primary" indeterminate v-if="pending" />
+    <div dir="rtl" class="mr-10">
+      <v-btn @click="refresh" color="primary"
+        >Refresh
+        <v-progress-circular color="white" indeterminate v-if="pending"
+      /></v-btn>
+    </div>
+    <div>
+      <v-text-field
+        v-model="search"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+    </div>
     <v-data-table
       dense
       :headers="headers"
@@ -43,13 +49,15 @@ const search = ref("");
 const handleClick = async (event, row) => {
   await navigateTo(`/employees/${row.item.id}`);
 };
-const { data } = await useAsyncData(
+const config = useRuntimeConfig();
+
+const { data, pending, refresh } = await useAsyncData(
   "employeeItem",
   () =>
-    $fetch(`http://localhost/hrms/api/employees`, {
+    $fetch(`${config.public.baseURL}/api/employees`, {
       headers: {
         accept: "application/json",
-        Authorization: `Bearer 36|vBSLIHAH9wU6ChrKJjjA1mo7KCuk93lesE0ckxO96c37a705`,
+        Authorization: `Bearer ${useState("token").value}`,
       },
     }),
   {

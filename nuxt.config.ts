@@ -36,6 +36,16 @@ export default defineNuxtConfig({
   //   // Login Page SSR false
   //   '/login2': { ssr: false },
   // },
+  runtimeConfig: {
+    // Private keys are only available on the server
+    
+
+    // Public keys that are exposed to the client
+    public: {
+      baseURL: process.env.BASE_URL,
+      //apiBase: process.env.NUXT_PUBLIC_API_BASE || '/api'
+    }
+  },
   experimental: {
     payloadExtraction: true
   },

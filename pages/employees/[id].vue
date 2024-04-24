@@ -1,13 +1,13 @@
 <script setup>
 const route = useRoute();
 const search = ref("");
-const employee = ref();
 const status = ref(false);
+const config = useRuntimeConfig();
 const { data, pending } = useAsyncData("employee", () =>
-  $fetch(`http://localhost/hrms/api/employee/${route.params.id}`, {
+  $fetch(`${config.public.baseURL}/api/employee/${route.params.id}`, {
     headers: {
       accept: "application/json",
-      Authorization: `Bearer 36|vBSLIHAH9wU6ChrKJjjA1mo7KCuk93lesE0ckxO96c37a705`,
+      Authorization: `Bearer ${useState("token").value}`,
     },
   })
 );
@@ -19,20 +19,8 @@ const headers = [
   },
 ];
 
-employee.value = data;
 status.value = pending;
 
-console.log("data...." + data.full_name);
-
-onMounted(() => {
-  console.log("education...." + employee.value.full_name);
-  // statusColor.value =
-  //   data?.value.hr_status_id == "Active"
-  //     ? "bg-green-500 py-1 px-2 rounded text-white text-sm"
-  //     : "bg-red-500 py-1 px-2 rounded text-white text-sm";
-});
-
-const statusColor = employee.hr_status_id;
 const handleClick = (event, row) => {
   window.open(row.item.full_path, "_blank");
   console.log(row.item.full_path);
@@ -42,6 +30,11 @@ const handleClick = (event, row) => {
   <div v-if="status.value">Loading.....</div>
   <div v-else>
     <!-- followin div remove container class due to stretched horizontally  -->
+    <NuxtLink to="/employees/list">
+      <v-btn variant="elevated" prepend-icon="mdi-arrow-left" color="primary"
+        >Back</v-btn
+      >
+    </NuxtLink>
     <div class="overflow-x-scroll my-5 p-5">
       <div class="md:flex no-wrap md:-mx-2">
         <!-- Left Side -->
@@ -57,17 +50,17 @@ const handleClick = (event, row) => {
           >
             <div class="grid grid-cols-2">
               <div class="image overflow-hidden">
-                <img class="w-full" :src="employee.value.picture" alt="" />
+                <img class="w-full" :src="data.picture" alt="" />
               </div>
               <div class="p-3">
                 <h1 class="text-gray-900 font-bold text-xl leading-8 my-1">
                   {{ data.full_name }}
                 </h1>
                 <h2 class="text-gray-900 text-xl leading-8 my-1">
-                  {{ employee.value.designation }}
+                  {{ data.designation }}
                 </h2>
                 <h2 class="text-gray-900 text-xl leading-8 my-1">
-                  {{ employee.value.employee_no }}
+                  {{ data.employee_no }}
                 </h2>
                 <ul
                   class="bg-gray-100 text-gray-600 hover:text-gray-700 hover:shadow py-2 px-3 mt-3 divide-y rounded shadow-sm"
@@ -82,26 +75,22 @@ const handleClick = (event, row) => {
                             ? 'bg-green-500'
                             : 'bg-red-500',
                         ]"
-                        >{{ employee.value.hr_status_id }}</span
+                        >{{ data.hr_status_id }}</span
                       ></span
                     >
                   </li>
                   <li class="flex items-center py-3">
                     <span>Date of Joining</span>
-                    <span class="ml-auto">{{
-                      employee.value.joining_date
-                    }}</span>
+                    <span class="ml-auto">{{ data.joining_date }}</span>
                   </li>
                   <li class="flex items-center py-3">
                     <span>Current Salary</span>
-                    <span class="ml-auto">{{
-                      employee.value.current_salary
-                    }}</span>
+                    <span class="ml-auto">{{ data.current_salary }}</span>
                   </li>
                   <li class="flex items-center py-3">
                     <span>Salary Effective</span>
                     <span class="ml-auto">{{
-                      employee.value.salary_effective_date
+                      data.salary_effective_date
                     }}</span>
                   </li>
                 </ul>

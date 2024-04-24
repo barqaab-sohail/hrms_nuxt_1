@@ -1,6 +1,7 @@
 <script setup lang="js">
 definePageMeta({
-  layout: 'disable'
+  layout: 'disable',
+
 })
 useHead({
   script: [
@@ -11,7 +12,6 @@ useHead({
     }
   ]
 })
-import axios from '../axios'
 
 const email = ref("")
 const password = ref("")

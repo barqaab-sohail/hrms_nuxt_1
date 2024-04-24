@@ -1,5 +1,6 @@
 export default defineEventHandler(async (event) => {
-  const url = `http://localhost/hrms/api/mis/logout`;
+  const config = useRuntimeConfig(event);
+  const url = `${config.public.baseURL}/api/mis/logout`;
 
   const bodyData = await readBody(event);
 

@@ -48,6 +48,26 @@ const selectedItem = 1;
         </NuxtLink>
       </li>
       <li class="mb-1 group">
+        <NuxtLink
+          to="/about"
+          class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100"
+        >
+          <i class="ri-home-2-line mr-3 text-lg"></i>
+          <span
+            class="text-sm"
+            :class="[route.name === 'about' ? 'text-red-600' : '']"
+            >About</span
+          >
+        </NuxtLink>
+      </li>
+      <li
+        class="mb-1 group"
+        :class="[
+          route.name === 'employees-list' || route.name === 'employees-id'
+            ? 'selected'
+            : '',
+        ]"
+      >
         <a
           href=""
           class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100 sidebar-dropdown-toggle"
@@ -118,25 +138,31 @@ const selectedItem = 1;
         </a>
         <ul class="pl-7 mt-2 hidden group-[.selected]:block">
           <li class="mb-4">
-            <a
+            <!-- <a
               href=""
               class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
-              >All Projects</a
-            >
+              > -->
+            All Projects
+            <!-- </a
+            > -->
           </li>
           <li class="mb-4">
-            <a
+            <!-- <a
               href=""
               class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
-              >In Progress Projects</a
-            >
+              > -->
+            In Progress Projects
+            <!-- </a
+            > -->
           </li>
           <li class="mb-4">
-            <a
+            <!-- <a
               href=""
               class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
-              >Completed Projects</a
-            >
+              > -->
+            Completed Projects
+            <!-- </a
+            > -->
           </li>
         </ul>
       </li>
@@ -153,25 +179,28 @@ const selectedItem = 1;
         </a>
         <ul class="pl-7 mt-2 hidden group-[.selected]:block">
           <li class="mb-4">
-            <a
+            All Projects
+            <!-- <a
               href=""
               class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
               >All Projects</a
-            >
+            > -->
           </li>
           <li class="mb-4">
-            <a
+            In Progress Projects
+            <!-- <a
               href=""
               class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
               >In Progress Projects</a
-            >
+            > -->
           </li>
           <li class="mb-4">
-            <a
+            Completed Projects
+            <!-- <a
               href=""
               class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
               >Completed Projects</a
-            >
+            > -->
           </li>
         </ul>
       </li>
