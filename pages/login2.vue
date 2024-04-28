@@ -3,6 +3,8 @@ definePageMeta({
   layout: 'disable',
 
 })
+const config = useRuntimeConfig();
+console.log('testin '+ config.public.baseURL)
 useHead({
   script: [
     {

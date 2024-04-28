@@ -138,11 +138,12 @@ const selectedItem = 1;
         </a>
         <ul class="pl-7 mt-2 hidden group-[.selected]:block">
           <li class="mb-4">
-            <!-- <a
-              href=""
+            <NuxtLink
               class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
-              > -->
-            All Projects
+              to="/projects/power/all"
+              :class="[route.name === 'employees-list' ? 'text-red-600' : '']"
+              >
+            All Projects</NuxtLink>
             <!-- </a
             > -->
           </li>
