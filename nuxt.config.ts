@@ -1,5 +1,7 @@
 // Nuxt config file
 import { defineNuxtConfig } from 'nuxt/config'
+import * as ChartJs from 'chart.js';
+const { Chart, registerables } = ChartJs;
 
 export default defineNuxtConfig({
   app:{

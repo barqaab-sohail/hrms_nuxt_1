@@ -12,9 +12,11 @@
   "dependencies": {
     "@popperjs/core": "^2.11.8",
     "axios": "^1.6.8",
+    "chart.js": "^3.9.1",
     "datatables.net-dt": "^2.0.3",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",
+    "vue-chart-3": "^3.1.8",
     "vue-router": "^4.3.0",
     "vue-use-popperjs": "^2.3.8"
   },
