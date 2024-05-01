@@ -21,6 +21,7 @@
     "vue-use-popperjs": "^2.3.8"
   },
   "devDependencies": {
+    "@iconify/tailwind": "^1.0.1",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "nuxt-mdi": "^1.1.6",
     "vuetify-nuxt-module": "^0.13.1"
