@@ -1,7 +1,5 @@
 // Nuxt config file
 import { defineNuxtConfig } from 'nuxt/config'
-import * as ChartJs from 'chart.js';
-const { Chart, registerables } = ChartJs;
 
 export default defineNuxtConfig({
   app:{
@@ -55,6 +53,7 @@ export default defineNuxtConfig({
     'vuetify-nuxt-module',
     '@nuxtjs/tailwindcss',
     'nuxt-mdi',
+    'nuxt-icon',
   ],
  
   vuetify: {

@@ -21,7 +21,6 @@
       :items="data"
       :search="search"
       append-icon="search"
-
     >
       <template v-slot:item.status="{ value }">
         <v-chip :color="getStatus(value)">
@@ -32,12 +31,10 @@
   </div>
 </template>
 <script setup>
-
 const getStatus = (status) => {
   if (status == "Completed") return "green";
   else return "red";
-}
-
+};
 
 const nuxtApp = useNuxtApp();
 const search = ref("");
@@ -51,7 +48,7 @@ const handleClick = async (event, row) => {
 const config = useRuntimeConfig();
 
 const { data, pending, refresh } = await useAsyncData(
-  "projects",
+  "all_power_projects",
   () =>
     $fetch(`${config.public.baseURL}/api/projects/0/2`, {
       headers: {

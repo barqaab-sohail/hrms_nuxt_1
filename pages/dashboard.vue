@@ -5,19 +5,13 @@ definePageMeta({
   middleware: "auth",
 });
 
-const { data, pending } = await useAsyncData(
-  "chat",
-  () =>
-    $fetch(`${config.public.baseURL}/api/charts`, {
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${useState("token").value}`,
-      },
-    }),
-  {
-    getCachedData: (key) =>
-      nuxtApp.payload.data[key] || nuxtApp.static.data[key],
-  }
+const { data, pending } = await useAsyncData("chart", () =>
+  $fetch(`${config.public.baseURL}/api/charts`, {
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${useState("token").value}`,
+    },
+  })
 );
 // const { data } = await useFetch(
 //   `${config.public.baseURL}/api/charts`,
@@ -74,24 +68,27 @@ const ageData = {
 </script>
 <template>
   <div>
-    <h1>Dashboard</h1>
-    <div class="grid grid-cols-2 gap-4">
-      <div class="border-2 items-center">
-        <PieChart :chartData="categoryData" />
-      </div>
-      <div class="border-2 items-center">
+    <div v-if="pending.value">Loading.....</div>
+    <div v-else>
+      <h1>Dashboard</h1>
+      <div class="grid grid-cols-2 gap-4">
         <div class="border-2 items-center">
-          <PieChart :chartData="departmentData" />
+          <PieChart :chartData="categoryData" />
         </div>
-      </div>
-      <div class="border-2 items-center">
         <div class="border-2 items-center">
-          <PieChart :chartData="employeeSkillData" />
+          <div class="border-2 items-center">
+            <PieChart :chartData="departmentData" />
+          </div>
         </div>
-      </div>
-      <div class="border-2 items-center">
         <div class="border-2 items-center">
-          <PieChart :chartData="ageData" />
+          <div class="border-2 items-center">
+            <PieChart :chartData="employeeSkillData" />
+          </div>
+        </div>
+        <div class="border-2 items-center">
+          <div class="border-2 items-center">
+            <PieChart :chartData="ageData" />
+          </div>
         </div>
       </div>
     </div>
