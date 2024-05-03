@@ -21,6 +21,7 @@
       :items="data"
       :search="search"
       append-icon="search"
+      @click:row="handleClick"
     >
       <template v-slot:item.status="{ value }">
         <v-chip :color="getStatus(value)">
@@ -43,7 +44,7 @@ const search = ref("");
 //   "Content-Type": "application/json",
 // };
 const handleClick = async (event, row) => {
-  await navigateTo(`/employees/${row.item.id}`);
+  await navigateTo(`/projects/power/${row.item.id}`);
 };
 const config = useRuntimeConfig();
 
