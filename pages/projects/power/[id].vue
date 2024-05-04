@@ -6,8 +6,8 @@ definePageMeta({
   middleware: "auth",
 });
 
-const { data: budget, pending } = await useAsyncData("chart", () =>
-  $fetch(`${config.public.baseURL}/api/proejctSummaryMM/${route.params.id}`, {
+const { data: budget, pending } = await useAsyncData("chart_1", () =>
+  $fetch(`${config.public.baseURL}/api/project/${route.params.id}`, {
     headers: {
       accept: "application/json",
       Authorization: `Bearer ${useState("token").value}`,
@@ -39,6 +39,11 @@ const budgetData = {
 </script>
 <template>
   <div>
+    <!-- Start Cards -->
+    <div>
+      <projectCostDetail :projectData="budget" />
+    </div>
+    <!-- End Cards -->
     <div v-if="pending.value">Loading.....</div>
     <div v-else>
       <v-btn

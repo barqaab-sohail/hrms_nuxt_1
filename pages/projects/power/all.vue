@@ -62,7 +62,6 @@ const { data, pending, refresh } = await useAsyncData(
       nuxtApp.payload.data[key] || nuxtApp.static.data[key],
   }
 );
-console.log(data);
 const headers = [
   { title: "Project No", value: "project_no" },
   { title: "Project Name", value: "name" },
