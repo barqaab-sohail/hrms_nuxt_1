@@ -6,13 +6,17 @@ definePageMeta({
   middleware: "auth",
 });
 
-const { data: budget, pending } = await useAsyncData("chart_1", () =>
+const { data: budget, pending } = await useAsyncData(`project_${route.params.id}`, () =>
   $fetch(`${config.public.baseURL}/api/project/${route.params.id}`, {
     headers: {
       accept: "application/json",
       Authorization: `Bearer ${useState("token").value}`,
     },
-  })
+  }),
+  {
+    getCachedData: (key) =>
+      nuxtApp.payload.data[key] || nuxtApp.static.data[key],
+  }
 );
 
 import { PieChart } from "vue-chart-3";
@@ -41,7 +45,7 @@ const budgetData = {
   <div>
     <!-- Start Cards -->
     <div>
-      <projectCostDetail :projectData="budget" />
+     
     </div>
     <!-- End Cards -->
     <div v-if="pending.value">Loading.....</div>

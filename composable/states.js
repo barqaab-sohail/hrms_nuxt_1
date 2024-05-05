@@ -1,2 +1,2 @@
 export const userName = () =>
-  useState < string > ("userName", () => "Sohail Afzal");
+  useState (() => "Sohail Afzal");

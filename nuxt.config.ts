@@ -4,7 +4,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 export default defineNuxtConfig({
   app:{
     head: {
-      title: 'hrms_nuxt_1',
+      title: 'BARQAAB MIS',
       htmlAttrs: {
         lang: 'en'
       },
@@ -31,6 +31,16 @@ export default defineNuxtConfig({
         type: "text/javascript"
       }
     ]
+  },
+  hooks: {
+    'pages:extend' (pages) {
+      // add a route
+      pages.push({
+        name: 'login',
+        path: '/',
+        file: '~/pages/login2.vue'
+      })
+    }
   },
   // routeRules: {
   //   // Login Page SSR false

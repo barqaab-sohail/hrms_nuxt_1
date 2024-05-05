@@ -35,6 +35,7 @@ const emailRules = [
     console.log(data.value.userName);
 
   }
+ 
 </script>
 
 <template>

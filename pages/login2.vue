@@ -1,8 +1,9 @@
 <script setup lang="js">
 definePageMeta({
   layout: 'disable',
+  middleware: "auth",
 
-})
+});
 const config = useRuntimeConfig();
 console.log('testin '+ config.public.baseURL)
 useHead({
@@ -110,10 +111,10 @@ async function signInWithCredentials()  {
   <div>
     <v-img
       class="mx-auto my-6"
-      max-width="228"
-      src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-v3-slim-text-light.svg"
+      max-width="300"
+      src="/mono.jpg"
     ></v-img>
-
+    <!-- src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-v3-slim-text-light.svg" -->
     <v-card
       class="mx-auto pa-12 pb-8"
       elevation="8"
