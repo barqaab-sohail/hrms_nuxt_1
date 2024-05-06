@@ -21,8 +21,12 @@
     "vue-use-popperjs": "^2.3.8"
   },
   "devDependencies": {
+    "@fortawesome/free-brands-svg-icons": "^6.5.2",
+    "@fortawesome/free-regular-svg-icons": "^6.5.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@iconify/tailwind": "^1.0.1",
     "@nuxtjs/tailwindcss": "^6.11.4",
+    "@vesp/nuxt-fontawesome": "^1.0.4",
     "nuxt-icon": "^0.6.10",
     "nuxt-mdi": "^1.1.6",
     "vuetify-nuxt-module": "^0.13.1"

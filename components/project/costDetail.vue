@@ -1,6 +1,5 @@
 <script setup>
 const data = useAttrs().projectData;
-console.log("data...." + data.value);
 </script>
 <template>
   <div class="flex flex-wrap grid grid-cols-5 gap-2">

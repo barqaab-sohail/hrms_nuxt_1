@@ -5,13 +5,19 @@ definePageMeta({
   middleware: "auth",
 });
 
-const { data, pending } = await useAsyncData("chart", () =>
-  $fetch(`${config.public.baseURL}/api/charts`, {
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${useState("token").value}`,
-    },
-  })
+const { data, pending, refresh } = await useAsyncData(
+  "chart",
+  () =>
+    $fetch(`${config.public.baseURL}/api/charts`, {
+      headers: {
+        accept: "application/json",
+        Authorization: `Bearer ${useState("token").value}`,
+      },
+    }),
+  {
+    getCachedData: (key) =>
+      nuxtApp.payload.data[key] || nuxtApp.static.data[key],
+  }
 );
 // const { data } = await useFetch(
 //   `${config.public.baseURL}/api/charts`,
@@ -27,8 +33,14 @@ const { data, pending } = await useAsyncData("chart", () =>
 //   }
 // );
 
-import { PieChart } from "vue-chart-3";
-
+import { PieChart, DoughnutChart } from "vue-chart-3";
+const options = {
+  plugins: {
+    legend: {
+      position: "left",
+    },
+  },
+};
 const categoryData = {
   labels: Object.keys(data.value.employeeCategoryChart),
   datasets: [
@@ -43,7 +55,11 @@ const departmentData = {
   datasets: [
     {
       data: Object.values(data.value.departmentChart),
-      backgroundColor: ["red", "#2683e5", "orange"],
+      backgroundColor: [
+        "rgb(255, 99, 132)",
+        "rgb(54, 162, 235)",
+        "rgb(255, 205, 86)",
+      ],
     },
   ],
 };
@@ -71,23 +87,29 @@ const ageData = {
     <div v-if="pending.value">Loading.....</div>
     <div v-else>
       <h1>Dashboard</h1>
+      <div dir="rtl" class="mr-10 mb-2">
+        <v-btn @click="refresh" color="primary"
+          >Refresh
+          <v-progress-circular color="white" indeterminate v-if="pending"
+        /></v-btn>
+      </div>
       <div class="grid grid-cols-2 gap-4">
         <div class="border-2 items-center">
-          <PieChart :chartData="categoryData" />
+          <PieChart :chartData="categoryData" :options="options" />
         </div>
         <div class="border-2 items-center">
           <div class="border-2 items-center">
-            <PieChart :chartData="departmentData" />
+            <DoughnutChart :chartData="departmentData" :options="options" />
           </div>
         </div>
         <div class="border-2 items-center">
           <div class="border-2 items-center">
-            <PieChart :chartData="employeeSkillData" />
+            <PieChart :chartData="employeeSkillData" :options="options" />
           </div>
         </div>
         <div class="border-2 items-center">
           <div class="border-2 items-center">
-            <PieChart :chartData="ageData" />
+            <PieChart :chartData="ageData" :options="options" />
           </div>
         </div>
       </div>

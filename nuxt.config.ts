@@ -64,7 +64,14 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-mdi',
     'nuxt-icon',
+    '@vesp/nuxt-fontawesome',
   ],
+  fontawesome: {
+    icons: {
+      solid: ['dollar-sign', 'cog', 'circle', 'check', 'calendar'],
+      regular: ['user']
+    }
+  },
  
   vuetify: {
     moduleOptions: {
