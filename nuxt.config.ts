@@ -62,9 +62,7 @@ export default defineNuxtConfig({
   modules: [
     'vuetify-nuxt-module',
     '@nuxtjs/tailwindcss',
-    'nuxt-mdi',
-    'nuxt-icon',
-    '@vesp/nuxt-fontawesome',
+    
   ],
   fontawesome: {
     icons: {

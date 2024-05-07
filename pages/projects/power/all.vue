@@ -1,40 +1,10 @@
-<template>
-  <div>
-    <h1>All Power Projects</h1>
-    <div dir="rtl" class="mr-10 mb-2">
-      <v-btn @click="refresh" color="primary"
-        >Refresh
-        <v-progress-circular color="white" indeterminate v-if="pending"
-      /></v-btn>
-    </div>
-    <div>
-      <v-text-field
-        v-model="search"
-        label="Search"
-        single-line
-        hide-details
-      ></v-text-field>
-    </div>
-    <v-data-table
-      dense
-      :headers="headers"
-      :items="data"
-      :search="search"
-      append-icon="search"
-      @click:row="handleClick"
-    >
-      <template v-slot:item.status="{ value }">
-        <v-chip :color="getStatus(value)">
-          {{ value }}
-        </v-chip>
-      </template>
-    </v-data-table>
-  </div>
-</template>
 <script setup>
+definePageMeta({
+  middleware: "auth",
+});
 const getStatus = (status) => {
-  if (status == "Completed") return "green";
-  else return "red";
+  if (status == "Completed") return "blue";
+  else return "green";
 };
 
 const nuxtApp = useNuxtApp();
@@ -80,3 +50,36 @@ const refreshPage = () => {
 //   return String(item.full_name).toLowerCase().includes(search);
 // }
 </script>
+<template>
+  <div>
+    <h1>All Power Projects</h1>
+    <div dir="rtl" class="mr-10 mb-2">
+      <v-btn @click="refresh" color="primary"
+        >Refresh
+        <v-progress-circular color="white" indeterminate v-if="pending"
+      /></v-btn>
+    </div>
+    <div>
+      <v-text-field
+        v-model="search"
+        label="Search"
+        single-line
+        hide-details
+      ></v-text-field>
+    </div>
+    <v-data-table
+      dense
+      :headers="headers"
+      :items="data"
+      :search="search"
+      append-icon="search"
+      @click:row="handleClick"
+    >
+      <template v-slot:item.status="{ value }">
+        <v-chip :color="getStatus(value)">
+          {{ value }}
+        </v-chip>
+      </template>
+    </v-data-table>
+  </div>
+</template>

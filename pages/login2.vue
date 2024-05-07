@@ -29,6 +29,7 @@ onMounted(()=>{
   password.value = localStorage.getItem('password')
 });
 const token = useState("token", () => "");
+const permissions = useState("permissions", () => []);
 const valid = ref(false)
 const  errorMessage= ref("")
 const passwordRules =[
@@ -69,8 +70,15 @@ async function signInWithCredentials()  {
       token.value = data.value.token
       localStorage.setItem('designation',data.value.userDesignation)
       localStorage.setItem('picture',data.value.pictureUrl)
+      localStorage.setItem('permissions',data.value.permissions)
+      permissions.value = data.value.permissions.filter((permission)=> permission =='mis projects' || permission =='mis hr' || permission =='mis assets' );
 
-      await navigateTo('/dashboard')
+      if(permissions.value.length>0){
+        await navigateTo('/dashboard')
+      }else{
+        alert.value=true;
+        errorMessage.value="You are not authorized"
+      }
 
     }else{
       alert.value=true;
@@ -109,11 +117,7 @@ async function signInWithCredentials()  {
 
 <template>
   <div>
-    <v-img
-      class="mx-auto my-6"
-      max-width="300"
-      src="/mono.jpg"
-    ></v-img>
+    <v-img class="mx-auto my-6" max-width="300" src="/mono.jpg"></v-img>
     <!-- src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-v3-slim-text-light.svg" -->
     <v-card
       class="mx-auto pa-12 pb-8"

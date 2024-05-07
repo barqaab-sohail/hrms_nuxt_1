@@ -15,20 +15,15 @@
     "chart.js": "^3.9.1",
     "datatables.net-dt": "^2.0.3",
     "nuxt": "^3.11.2",
+    
     "vue": "^3.4.21",
     "vue-chart-3": "^3.1.8",
     "vue-router": "^4.3.0",
     "vue-use-popperjs": "^2.3.8"
   },
   "devDependencies": {
-    "@fortawesome/free-brands-svg-icons": "^6.5.2",
-    "@fortawesome/free-regular-svg-icons": "^6.5.2",
-    "@fortawesome/free-solid-svg-icons": "^6.5.2",
     "@iconify/tailwind": "^1.0.1",
-    "@nuxtjs/tailwindcss": "^6.11.4",
-    "@vesp/nuxt-fontawesome": "^1.0.4",
-    "nuxt-icon": "^0.6.10",
-    "nuxt-mdi": "^1.1.6",
+    "@nuxtjs/tailwindcss": "^6.11.4",   
     "vuetify-nuxt-module": "^0.13.1"
   }
 }
