@@ -27,6 +27,10 @@
   </div>
 </template>
 <script setup>
+definePageMeta({
+  middleware: "auth",
+});
+
 const nuxtApp = useNuxtApp();
 const search = ref("");
 
