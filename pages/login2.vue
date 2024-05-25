@@ -5,7 +5,6 @@ definePageMeta({
 
 });
 const config = useRuntimeConfig();
-console.log('testin '+ config.public.baseURL)
 useHead({
   script: [
     {
@@ -71,14 +70,9 @@ async function signInWithCredentials()  {
       localStorage.setItem('designation',data.value.userDesignation)
       localStorage.setItem('picture',data.value.pictureUrl)
       localStorage.setItem('permissions',data.value.permissions)
-      permissions.value = data.value.permissions.filter((permission)=> permission =='mis projects' || permission =='mis hr' || permission =='mis assets' );
-
-      if(permissions.value.length>0){
+     
         await navigateTo('/dashboard')
-      }else{
-        alert.value=true;
-        errorMessage.value="You are not authorized"
-      }
+     
 
     }else{
       alert.value=true;
@@ -116,7 +110,7 @@ async function signInWithCredentials()  {
 </script>
 
 <template>
-  <div>
+  <div >
     <v-img class="mx-auto my-6" max-width="300" src="/mono.jpg"></v-img>
     <!-- src="https://cdn.vuetifyjs.com/docs/images/logos/vuetify-logo-v3-slim-text-light.svg" -->
     <v-card
@@ -191,3 +185,5 @@ async function signInWithCredentials()  {
     </v-card>
   </div>
 </template>
+
+

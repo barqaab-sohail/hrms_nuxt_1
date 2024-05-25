@@ -100,7 +100,7 @@ const handleClick = (event, row) => {
             <div
               class="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8"
             >
-              <span>Experience and Education</span>
+              <span>Charts</span>
             </div>
 
             <!-- Experience and education -->
@@ -126,7 +126,7 @@ const handleClick = (event, row) => {
                         />
                       </svg>
                     </span>
-                    <span class="tracking-wide">Experience</span>
+                    <span class="tracking-wide"></span>
                   </div>
                   <ul class="list-inside space-y-2"></ul>
                 </div>
@@ -155,7 +155,7 @@ const handleClick = (event, row) => {
                         />
                       </svg>
                     </span>
-                    <span class="tracking-wide">Education</span>
+                    <span class="tracking-wide"></span>
                   </div>
                   <ul class="list-inside space-y-2"></ul>
                 </div>

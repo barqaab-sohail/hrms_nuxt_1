@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>BARQAAB Asset Count</h1>
+    <h1 class="mb-2 mt-0 text-5xl font-medium leading-tight uppercase text-primary">BARQAAB Asset Count</h1>
     <div dir="rtl" class="mr-10 mb-2">
       <v-btn @click="refresh" color="primary"
         >Refresh

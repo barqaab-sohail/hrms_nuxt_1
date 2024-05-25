@@ -3,7 +3,7 @@ const route = useRoute();
 </script>
 <template>
   <div>
-    <span class="text-gray-400 font-bold">PROJECTS </span>
+    <span class="text-green-950 font-bold">PROJECTS </span>
     <li class="mb-1 group">
       <a
         href=""
@@ -87,7 +87,7 @@ const route = useRoute();
             class="text-gray-900 text-sm flex items-center hover:text-[#f84525] before:contents-[''] before:w-1 before:h-1 before:rounded-full before:bg-gray-300 before:mr-3"
             to="/projects/water/inProgress"
             :class="[
-              route.name === 'projects-water-InProgress' ? 'text-red-600' : '',
+              route.name === 'projects-water-inProgress' ? 'text-red-600' : '',
             ]"
           >
             In Progress Projects</NuxtLink

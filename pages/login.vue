@@ -41,7 +41,7 @@ const emailRules = [
 <template>
   <v-app>
     <v-main>
-      <v-container>
+      <v-container >
         <v-row>
           <v-col class="justify-center" md="4"> </v-col>
           <v-col class="justify-center" md="4">

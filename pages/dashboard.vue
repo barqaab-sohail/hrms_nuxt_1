@@ -86,7 +86,7 @@ const ageData = {
   <div>
     <div v-if="pending.value">Loading.....</div>
     <div v-else>
-      <h1>Dashboard</h1>
+      <h1 class="mb-2 mt-0 text-5xl font-medium leading-tight uppercase text-primary">Dashboard</h1>
       <div dir="rtl" class="mr-10 mb-2">
         <v-btn @click="refresh" color="primary"
           >Refresh

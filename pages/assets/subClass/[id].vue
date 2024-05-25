@@ -41,7 +41,7 @@ const handleClick = (event, row) => {
       </NuxtLink>
     </div>
     <div class="mt-4">
-      <h1>Asset Sub Class Detail</h1>
+      <h1 class="mb-2 mt-0 text-3xl font-medium leading-tight uppercase text-primary">Asset Sub Class Detail</h1>
       <div dir="rtl" class="mr-10 mb-2">
         <v-btn @click="refresh" color="primary"
           >Refresh

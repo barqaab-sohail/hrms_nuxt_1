@@ -3,7 +3,7 @@ const route = useRoute();
 </script>
 <template>
   <div>
-    <span class="text-gray-400 font-bold">ASSETS</span>
+    <span class="text-green-950 font-bold">ASSETS</span>
     <li class="mb-1 group">
       <a
         href=""

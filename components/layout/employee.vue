@@ -2,8 +2,8 @@
 const route = useRoute();
 </script>
 <template>
-  <span class="text-gray-400 font-bold">HR</span>
-  <li class="mb-1 group">
+  <span class="text-green-950 font-bold">HR</span>
+  <!-- <li class="mb-1 group">
     <NuxtLink
       to="/about"
       class="flex font-semibold items-center py-2 px-4 text-gray-900 hover:bg-gray-950 hover:text-gray-100 rounded-md group-[.active]:bg-gray-800 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100"
@@ -15,7 +15,7 @@ const route = useRoute();
         >About</span
       >
     </NuxtLink>
-  </li>
+  </li> -->
   <li
     class="mb-1 group"
     :class="[
